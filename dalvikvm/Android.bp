@@ -24,7 +24,6 @@ art_cc_binary {
         "-Wall",
         "-Werror",
         "-Wextra",
-        "-O3",
     ],
     shared_libs: [
         "libnativehelper",

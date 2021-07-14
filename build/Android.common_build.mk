@@ -33,11 +33,6 @@ ART_BUILD_TARGET_DEBUG ?= true
 ART_BUILD_HOST_NDEBUG ?= true
 ART_BUILD_HOST_DEBUG ?= true
 
-ifneq ($(USE_DEX2OAT_DEBUG),false)
-ART_BUILD_TARGET_DEBUG ?= true
-ART_BUILD_HOST_DEBUG ?= true
-endif
-
 ifeq ($(ART_BUILD_TARGET_NDEBUG),false)
 $(info Disabling ART_BUILD_TARGET_NDEBUG)
 endif

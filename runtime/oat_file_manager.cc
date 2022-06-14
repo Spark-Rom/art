@@ -390,9 +390,11 @@ std::vector<std::unique_ptr<const DexFile>> OatFileManager::OpenDexFilesFromOat(
     static constexpr bool kVerifyChecksum = true;
     const ArtDexFileLoader dex_file_loader;
     int fd;
+    int old_fd = 0;
     if (!strncmp("/proc/self/fd/", dex_location, strlen("/proc/self/fd/")) &&
           sscanf(dex_location, "/proc/self/fd/%d", &fd) == 1) {
-      fd = dup(fd);
+      fd = open(dex_location, O_CLOEXEC | O_RDONLY);
+      lseek(fd, lseek(old_fd, 0, SEEK_CUR), 0);
     } else {
       fd = open(dex_location, O_RDONLY | O_CLOEXEC);
     }

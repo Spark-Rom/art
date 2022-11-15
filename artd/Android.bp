@@ -38,6 +38,15 @@ art_cc_binary {
         "libbinder_ndk",
     ],
 
+    target: {
+        android: {
+            lto: {
+                thin: true,
+            },
+        },
+    },
+    whole_program_vtables: true, // Requires LTO
+    
     apex_available: [
         "com.android.art",
         "com.android.art.debug",

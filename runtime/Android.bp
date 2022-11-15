@@ -656,6 +656,14 @@ art_cc_library {
         "libdexfiled",
         "libprofiled",
     ],
+    target: {
+        android: {
+            lto: {
+                thin: true,
+            },
+        },
+    },
+    whole_program_vtables: true, // Requires LTO
     export_shared_lib_headers: [
         "libdexfiled",
     ],

@@ -72,6 +72,14 @@ art_cc_defaults {
         "liblz4",
         "libz",
     ],
+    target: {
+        android: {
+            lto: {
+                thin: true,
+            },
+        },
+    },
+    whole_program_vtables: true, // Requires LTO
     export_include_dirs: ["."],
 }
 
@@ -217,8 +225,12 @@ cc_defaults {
                 "libsigchain",
                 "libz",
             ],
+            lto: {
+                thin: true,
+            },
         },
     },
+    whole_program_vtables: true, // Requires LTO
 }
 
 cc_defaults {
@@ -316,6 +328,7 @@ art_cc_binary {
             compile_multilib: "64",
         },
     },
+    whole_program_vtables: true, // Requires LTO
 
     apex_available: [
         "com.android.art",
@@ -356,6 +369,9 @@ art_cc_binary {
             static_libs: [
                 "libartd-dex2oat",
             ],
+            lto: {
+                thin: true,
+            },
         },
         host: {
             // Make the host binary static, except for system libraries. This
@@ -372,6 +388,7 @@ art_cc_binary {
             compile_multilib: "64",
         },
     },
+    whole_program_vtables: true, // Requires LTO
 
     apex_available: [
         "com.android.art.debug",
